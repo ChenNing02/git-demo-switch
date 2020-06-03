@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>简易的轮播</title>
+    <style>
+        #switch {
+            width: 400px;
+            height: 300px;
+            overflow: hidden;
+            border: 2px solid blue;
+        }
+        #images {
+            width: 1200px;
+            display: flex;
+            align-items: flex-start;
+            transition: transform 0.4s;
+        }
+        #images img {
+            width: 400px;
+            height: 300px;
+        }
+        #buttons {
+            padding-top: 10px;
+            width: 400px;
+            text-align: center;
+        }
+        #buttons button {
+            cursor: pointer;
+            outline:none;
+            margin: 0 5px;
+            background-color: #fff;
+            border: 1px solid #d1d5da;
+        }
+        #buttons button.blue {
+            color: blue;
+            border-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="switch">
+        <div id="images">
+            <img src="./img/1.png" alt="图片1">
+            <img src="./img/2.png" alt="图片2">
+            <img src="./img/3.png" alt="图片3">
+            <img src="./img/4.png" alt="图片4">
+            <img src="./img/5.png" alt="图片5">
+        </div>
+    </div>
+    <div id="buttons">
+        <button id="btn1">1</button>
+        <button id="btn2">2</button>
+        <button id="btn3">3</button>
+        <button id="btn4">4</button>
+        <button id="btn5">5</button>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+        let $allButtons = $('#buttons > button')
+
+        for(let i = 0; i < $allButtons.length; i++){
+            $($allButtons).on('click', function(x){
+                let index = $(x.currentTarget).index()
+                $('#images').css({
+                    transform: 'translate('+ (index * -400) +'px)'
+                })
+                n = index
+                $allButtons.eq(n)
+                    .addClass('blue')
+                    .siblings('.blue').removeClass('blue')
+            })
+        }
+
+        let $img = $('#images > img')
+    
+        let n = 0;
+        let size = $img.length
+        $allButtons.eq(n%size).trigger('click')
+
+        let timeId = setTimer()
+        hoverEl('#switch')
+        hoverEl('#buttons > button')
+
+        function setTimer(){
+            return setInterval(()=>{
+                n += 1;
+                $allButtons.eq(n%size).trigger('click')
+            }, 1000)
+        }
+
+        function hoverEl(element){
+            $(element).on('mouseenter', function(){
+                window.clearInterval(timeId)
+            })
+            $(element).on('mouseleave', function(){
+                timeId = setTimer()
+            })
+        }
+
+    </script>
+</body>
+</html>

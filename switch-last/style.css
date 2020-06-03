@@ -1,0 +1,117 @@
+* { margin: 0; padding: 0; }
+* { box-sizing: border-box; }
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f1f3f4;
+    
+}
+.switch {
+    width: 700px;
+    height: 400px;
+    margin-top: 50px;
+    position: relative;
+}
+#slides {
+    /* margin: 10px; */
+    width: 700px;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+}
+#slides .photo {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10em;
+    text-align: center;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    background-color: #fff;
+    outline:none;
+}
+/* #slides .photo:nth-child(1){ background-color: #ff7f27; }
+#slides .photo:nth-child(2){ background-color: #0ed145; }
+#slides .photo:nth-child(3){ background-color: #ffca18; }
+#slides .photo:nth-child(4){ background-color: #00a8f3; }
+#slides .photo:nth-child(5){ background-color: #ffaec8; } */
+
+/* ============ left ============== */
+#slides>.photo.current {
+    left: 0;
+    transform: translateX(0);
+    z-index: 1;
+}
+#slides>.photo.leave {
+    transform: translateX(-100%);
+    z-index: 1;
+}
+#slides>.photo.enter {
+    transform: translateX(100%);
+}
+
+
+/* ============ right ============== */
+#slides>.photo.out {
+    transform: translateX(100%);
+    z-index: 1;
+}
+#slides>.photo.now{
+    transform: translateX(0);
+    z-index: 1;
+}
+#slides>.photo.back{
+    transform: translateX(-100%);
+}
+
+#buttonWrapper {
+    position: absolute;
+    top: 370px;
+    left: 50%;
+    margin-left: -49px;
+    text-align: center;
+    z-index: 3;
+}
+#buttonWrapper .bullet {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    line-height: 1.2em;
+    border-radius: 50%;
+    background-color: #cccccc;
+    outline:none;
+    cursor: pointer;
+}
+#buttonWrapper .bullet.blue{
+    background-color: #007aff;
+}
+
+.switch .switch-left,
+.switch .switch-right {
+    font-family: '黑体';
+    font-size: 4em;
+    font-weight: bold;
+    user-select:none;
+    cursor: pointer;
+    color: #007aff;
+}
+.switch .switch-left {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    margin-top: -0.6em;
+    z-index: 3;
+}
+.switch .switch-right {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    margin-top: -0.6em;
+    z-index: 3;
+}
