@@ -7,4 +7,4 @@
 
 ------
 
-开源插件推荐：https://swiper.com.cn/
+也可使用开源插件实现：https://swiper.com.cn/
